@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const files = document.querySelectorAll('.file');
+    const fileElements = document.querySelectorAll('.file');
     const contentView = document.getElementById('content-view');
     const tabsContainer = document.querySelector('.editor-tabs');
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p><strong>> CONTEXT:</strong> Walker International Transportation</p>
                     <p><strong>> ROLE:</strong> Operations Business Analyst</p>
                 </div>
-                <pre style="font-family: var(--font-mono); background: #eee; padding: 15px; border: 1px solid #000;">
+                <pre style="font-family: var(--font-mono); background: #eee; padding: 15px; border: 1px solid #000; overflow-x: auto;">
 pipelines:
   - name: WBR Congestion Report
     trigger: weekly
@@ -123,7 +123,7 @@ pipelines:
         'contact': `
             <div class="markdown-body">
                 <h2># Contact.json</h2>
-                <pre style="font-family: var(--font-mono); background: #eee; padding: 15px; border: 1px solid #000;">
+                <pre style="font-family: var(--font-mono); background: #eee; padding: 15px; border: 1px solid #000; overflow-x: auto;">
 {
     "name": "William Hanusiewicz",
     "roles": ["CEO, Universal Bridge Consulting", "Operations Business Analyst"],
@@ -147,22 +147,75 @@ pipelines:
         'contact': 'contact.json'
     };
 
-    files.forEach(file => {
-        file.addEventListener('click', () => {
-            // Remove active from all files
-            files.forEach(f => f.classList.remove('active'));
-            // Add active to clicked file
-            file.classList.add('active');
+    let openTabs = ['about'];
+    let activeTab = 'about';
 
-            const target = file.getAttribute('data-target');
+    function renderTabs() {
+        tabsContainer.innerHTML = '';
+        openTabs.forEach(tabId => {
+            const tabEl = document.createElement('div');
+            tabEl.className = `tab ${tabId === activeTab ? 'active' : ''}`;
+            tabEl.innerHTML = `${filenames[tabId]} <span class="close-tab" data-tab="${tabId}">×</span>`;
             
-            // Update Tab
-            tabsContainer.innerHTML = \`
-                <div class="tab active">\${filenames[target]} <span class="close-tab">×</span></div>
-            \`;
+            tabEl.addEventListener('click', (e) => {
+                if (e.target.classList.contains('close-tab')) {
+                    e.stopPropagation();
+                    closeTab(tabId);
+                } else {
+                    switchTab(tabId);
+                }
+            });
+            tabsContainer.appendChild(tabEl);
+        });
+    }
 
-            // Update Content
-            contentView.innerHTML = contentData[target];
+    function switchTab(tabId) {
+        if (!openTabs.includes(tabId)) {
+            openTabs.push(tabId);
+        }
+        activeTab = tabId;
+        renderTabs();
+        
+        // Update sidebar visual state
+        fileElements.forEach(f => {
+            if (f.getAttribute('data-target') === tabId) {
+                f.classList.add('active');
+            } else {
+                f.classList.remove('active');
+            }
+        });
+
+        // Inject HTML
+        contentView.innerHTML = contentData[tabId] || '<div class="markdown-body"><h2>File Not Found</h2></div>';
+        
+        // Auto-scroll to content on mobile screens
+        if (window.innerWidth <= 768) {
+            contentView.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function closeTab(tabId) {
+        openTabs = openTabs.filter(t => t !== tabId);
+        if (openTabs.length === 0) {
+            // No tabs open state
+            contentView.innerHTML = '<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; color:#888; font-family:var(--font-mono);"><h1 style="font-size:3rem; margin-bottom:10px;">UBC</h1><p>No files open. Select a file from the explorer.</p></div>';
+            activeTab = null;
+            fileElements.forEach(f => f.classList.remove('active'));
+        } else if (activeTab === tabId) {
+            // If we closed the active tab, switch to the last open tab
+            switchTab(openTabs[openTabs.length - 1]);
+        }
+        renderTabs();
+    }
+
+    // Attach click listeners to sidebar files
+    fileElements.forEach(file => {
+        file.addEventListener('click', () => {
+            const target = file.getAttribute('data-target');
+            switchTab(target);
         });
     });
+
+    // Initialize layout
+    renderTabs();
 });
