@@ -29,7 +29,7 @@ body {
 }
 
 /* Main Window Container */
-.os-window {
+.portfolio-container {
     width: 100%;
     max-width: 1200px;
     height: 90vh;
@@ -38,68 +38,6 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 8px 8px 0px rgba(0,0,0,1);
-}
-
-/* Title Bar */
-.title-bar {
-    background-color: var(--title-bar-bg);
-    color: var(--title-bar-text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 10px;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.title-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.window-controls {
-    display: flex;
-    gap: 4px;
-}
-
-.win-btn {
-    background: none;
-    border: 1px solid var(--title-bar-text);
-    color: var(--title-bar-text);
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    font-family: var(--font-mono);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    padding: 0;
-}
-
-.win-btn:hover {
-    background: var(--title-bar-text);
-    color: var(--title-bar-bg);
-}
-
-/* Menu Bar */
-.menu-bar {
-    display: flex;
-    border-bottom: 2px solid var(--border-color);
-    font-size: 0.9rem;
-    background-color: #f9f9f9;
-}
-
-.menu-item {
-    padding: 4px 12px;
-    cursor: pointer;
-    border-right: 1px solid var(--border-color);
-}
-
-.menu-item:hover, .menu-item.active {
-    background-color: var(--highlight-bg);
 }
 
 /* IDE Layout */
@@ -281,17 +219,11 @@ body {
     body {
         padding: 5px;
     }
-    .os-window {
+    .portfolio-container {
         height: 98vh;
         max-height: 98vh;
     }
-    .title-bar h1 {
-        font-size: 0.75rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
-    }
+
     .ide-layout {
         flex-direction: column;
     }
