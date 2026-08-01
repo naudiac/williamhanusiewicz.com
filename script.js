@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <h3>## Execution Summary</h3>
-                <p>I specialize in dissecting complex operational bottlenecks in global supply chains (from ocean freight delays to WBR rail congestion) and architecting programmatic solutions. By combining deep CargoWise database mastery with modern Python-based automation and LLM pipelines, I turn days of manual reporting into autonomous, error-free seconds.</p>
+                <p>I specialize in dissecting complex operational bottlenecks in global supply chains (from ocean freight delays to multimodal transit congestion) and architecting programmatic solutions. By combining deep CargoWise database mastery with modern Python-based automation and LLM pipelines, I turn days of manual reporting into autonomous, error-free seconds.</p>
 
                 <h3>## Core Competencies</h3>
                 <ul class="tech-list">
                     <li><span class="tag">CargoWise One</span> (SQL, Reporting, Workflow Automation)</li>
                     <li><span class="tag">Global Logistics</span> (Air/Ocean Freight, Customs, Congestion Analysis)</li>
                     <li><span class="tag">AI Orchestration</span> (Agentic Swarms, LLM Integration)</li>
-                    <li><span class="tag">Data Pipelines</span> (Python, Kenvue Reporting, EDI/API Proxies)</li>
+                    <li><span class="tag">Data Pipelines</span> (Python, Automated Reporting, EDI/API Proxies)</li>
                 </ul>
             </div>
         `,
@@ -85,22 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="markdown-body">
                 <h2># Logistics_Ops.yml</h2>
                 <div class="sys-info-box" style="color: #ffaa00;">
-                    <p><strong>> CONTEXT:</strong> Walker International Transportation</p>
-                    <p><strong>> ROLE:</strong> Operations Business Analyst</p>
+                    <p><strong>> CONTEXT:</strong> Global Logistics & Supply Chain Consulting</p>
+                    <p><strong>> CAPABILITIES:</strong> Automated Reporting & Data Architecture</p>
                 </div>
                 <pre style="font-family: var(--font-mono); background: #eee; padding: 15px; border: 1px solid #000; overflow-x: auto;">
-pipelines:
-  - name: WBR Congestion Report
-    trigger: weekly
-    action: Automated extraction and processing of GoComet port data to output standard WBR format.
+capabilities:
+  - service: Automated Congestion Analytics
+    frequency: Weekly / On-Demand
+    action: Autonomous extraction and processing of live port/vessel data to output standardized performance reports.
 
-  - name: Kenvue Air Report
-    trigger: daily
-    action: Monitors Stage 2 Excel data, identifies delay exceptions, and formats the output for Kenvue stakeholders.
+  - service: Transit Exception Monitoring
+    frequency: Daily / Real-Time
+    action: Intelligent monitoring of shipment data to identify exceptions and trigger proactive stakeholder alerts.
 
-  - name: CargoWise Sync
-    trigger: continuous
-    action: Rollover active shipments, fill missing milestone statuses, and maintain the live replica gap schema.
+  - service: CargoWise Database Synchronization
+    frequency: Continuous
+    action: Automated status updates, data integrity workflows, and live SQL read-replica maintenance.
                 </pre>
             </div>
         `,
