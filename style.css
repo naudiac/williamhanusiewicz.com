@@ -275,3 +275,48 @@ body {
     display: flex;
     gap: 20px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    .os-window {
+        height: 98vh;
+        max-height: 98vh;
+    }
+    .title-bar h1 {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+    .ide-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid var(--border-color);
+        flex: none;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .editor-pane {
+        flex: 1;
+        overflow-y: auto;
+    }
+    .editor-content {
+        padding: 15px;
+    }
+    .markdown-body h2 {
+        font-size: 1.4rem;
+    }
+    .status-bar {
+        flex-wrap: wrap;
+    }
+    .status-right {
+        display: none; /* Hide right status info on mobile */
+    }
+}
